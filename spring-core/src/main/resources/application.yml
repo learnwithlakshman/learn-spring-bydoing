@@ -1,0 +1,26 @@
+app.message: Welcome to Spring Dev Environment
+
+db: 
+  connection: 
+    password: user
+    url: "jdbc:mysql://serverip:3306/demo"
+    username: user
+    
+    
+ipl:
+  players:
+   - name: Virat Kohli
+     role: Batsman
+     country: India
+     team: RCB
+     price: 170000000
+   - name: AB de Villiers
+     role: Wicket Keeper
+     country: South Africa
+     team: RCB
+     price: 110000000
+   - name: James Neesham
+     role: All Rounder
+     country: New Zealand
+     team: KXIP
+     price: 5000000

@@ -1,27 +1,24 @@
 package com.careerit.lsd;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.careerit.lsd.di.DisplayGreetings;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
+@PropertySource("paytm.properties")
 public class SpringCoreApplication implements CommandLineRunner {
-		
-		@Autowired
-		private DisplayGreetings displayGreetings;
-		
-		public static void main(String[] args) {
-			SpringApplication.run(SpringCoreApplication.class, args);
-		}
 
-		@Override
-		public void run(String... args) throws Exception {
-			
-				displayGreetings.sendGreetings();
-				
-				
-		}	
+	@Value("${app.message}")
+	private String message;
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCoreApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(message);
+	}
 }

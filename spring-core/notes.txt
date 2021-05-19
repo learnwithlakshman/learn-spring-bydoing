@@ -1,0 +1,77 @@
+Scope:
+
+	@Autowired
+	private ApplicationContext applicationContext;
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCoreApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		TaskManager taskManager1 = applicationContext.getBean(TaskManager.class);
+		TaskManager taskManager2 = applicationContext.getBean(TaskManager.class);
+		taskManager1.setCount(1001);
+		System.out.println(taskManager1);
+		System.out.println(taskManager2);
+		System.out.println(taskManager1.getCount());
+		System.out.println(taskManager2.getCount());
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("/scope-bean.xml");
+		TaskManager taskManager3 = context.getBean(TaskManager.class);
+		TaskManager taskManager4 = context.getBean(TaskManager.class);
+		System.out.println(taskManager3);
+		System.out.println(taskManager4);
+		
+		
+		
+	}
+}
+------------------------------------------------------------------------------------------
+
+prototype:
+
+
+@Inject
+	private ApplicationContext applicationContext;
+	
+	 @Value("${app.paytm.mid:AMDK001}")
+	private String mid;
+	@Value("${app.paytm.mkey}")
+	private String mkey;
+	
+
+	
+	@Autowired
+	private DbConfig dbConfig;
+	
+	@Autowired
+	private PlayerService playerService;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCoreApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		TaskManager taskManager1 = applicationContext.getBean(TaskManager.class);
+		TaskManager taskManager2 = applicationContext.getBean(TaskManager.class);
+		
+		System.out.println(taskManager1.getTask());
+		System.out.println(taskManager2.getTask());
+		
+		System.out.println(mid+" - "+mkey);
+		
+		System.out.println(dbConfig);
+		
+		System.out.println(playerService.getPlayers());
+		System.out.println(playerService.getPlayers("RCB"));
+		
+	}
+
+Custom YML:
+
+
+https://www.baeldung.com/spring-yaml-propertysource
