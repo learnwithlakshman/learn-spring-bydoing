@@ -68,5 +68,6 @@
 		<module>spring-core</module>
 		<module>spring-jdbc</module>
 		<module>spring-domain</module>
+		<module>scart</module>
 	</modules>
 </project>
