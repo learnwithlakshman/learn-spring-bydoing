@@ -27,6 +27,9 @@ public class ProductDaoImpl implements ProductDao {
 	private static final String SELECT_PRODUCTS = "select pid,name,description,price from product";
 	private static final String ADD_PRODUCT = "insert into product(name,description,price) values(?,?,?)";
 	private static final String DELETE_PRODUCTS = "truncate table product";
+	private static final String PRODUCT_BY_ID = "select pid,name,description,price from product where pid = ? ";
+	private static final String SEARCH_PRODUCT = "select pid,name,description,price from product where name like '%'?'%'";
+	private static final String UPDATE_PRODUCT = "update product set name=?,description=?,price=? where pid = ?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -39,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
 
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement pst = con.prepareStatement(ADD_PRODUCT,Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement pst = con.prepareStatement(ADD_PRODUCT, Statement.RETURN_GENERATED_KEYS);
 				pst.setString(1, product.getName());
 				pst.setString(2, product.getDescription());
 				pst.setDouble(3, product.getPrice());
@@ -60,8 +63,17 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public long updateProduct(Product product) {
+		jdbcTemplate.update(UPDATE_PRODUCT,
+				new Object[] { product.getName(), product.getDescription(), product.getPrice(), product.getPid() });
+		LOGGER.info("Product with id :{} is updated with name :{} price:{}", product.getPid(), product.getName(),
+				product.getPrice());
+		return product.getPid();
+	}
+
+	@Override
 	public Product selectProductById(long pid) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -69,12 +81,6 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> search(String str) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public long updateProduct(Product product) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -97,9 +103,25 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void deleteProduct() {
-		
-			jdbcTemplate.update(DELETE_PRODUCTS);
 
+		jdbcTemplate.update(DELETE_PRODUCTS);
+
+	}
+
+	@Override
+	public Product selectProductByNameAndPrice(String name, double price) {
+		List<Product> products = jdbcTemplate.query(new PreparedStatementCreator() {
+
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pst = con
+						.prepareStatement("select pid,name,price,description where name=? and price=?");
+				pst.setString(1, name);
+				pst.setDouble(2, price);
+				return pst;
+			}
+		}, new BeanPropertyRowMapper<Product>(Product.class));
+		return products.size() == 0 ? null : products.get(0);
 	}
 
 }

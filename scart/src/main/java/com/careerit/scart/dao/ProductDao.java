@@ -23,4 +23,6 @@ public interface ProductDao {
 	long updateProducts(List<Product> products);
 
 	void deleteProduct();
+
+	Product selectProductByNameAndPrice(String name, double price);
 }
