@@ -1,4 +1,4 @@
-package com.careerit.scart.web;
+package com.careerit.scart.api;
 
 import java.util.List;
 

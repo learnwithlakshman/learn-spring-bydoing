@@ -58,8 +58,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product getProductById(long pid) {
-		// TODO Auto-generated method stub
-		return null;
+		   return productDao.selectProductById(pid);
 	}
 
 	@Override

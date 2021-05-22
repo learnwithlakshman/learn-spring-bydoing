@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -39,7 +40,6 @@ public class ProductDaoImpl implements ProductDao {
 
 		KeyHolder keyholder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
-
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement pst = con.prepareStatement(ADD_PRODUCT, Statement.RETURN_GENERATED_KEYS);
@@ -73,8 +73,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product selectProductById(long pid) {
-
-		return null;
+		return jdbcTemplate.queryForObject(PRODUCT_BY_ID, new Object[] {pid},new int[] {Types.INTEGER},new BeanPropertyRowMapper<Product>(Product.class));
 	}
 
 	@Override
@@ -111,7 +110,6 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product selectProductByNameAndPrice(String name, double price) {
 		List<Product> products = jdbcTemplate.query(new PreparedStatementCreator() {
-
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement pst = con
