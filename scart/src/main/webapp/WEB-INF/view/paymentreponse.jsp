@@ -29,38 +29,26 @@
 			</div>
 		</div>
 		<div class="row mt-2">
-			<div class="col col-md-8 offset-md-2">
+			<div class="col col-md-6 offset-md-3">
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Price</th>
-						
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${cartdetails.products}" var="product">
+						<h3>Payment Details:</h3>
+						<br>
+						<table class="table">
 							<tr>
-								<td>${product.name}</td>
-								<td>${product.description}</td>
-								<td>${product.price}</td>
-								
+								<td>Order ID</td>
+								<td>${paymentstatus.orderNumber}</td>
 							</tr>
-						
-						</c:forEach>
-						<tr class="bg-info">
-							<td colspan="2">Total Price</td>
-							<td>${cartdetails.totalPrice}</td>						
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td><a href="checkoutitems" class="btn btn-primary" >Checkout</a></td>
-						</tr>
-					</tbody>
-				</table>
-				<a href="home">Add More Items</a>
+							<tr>
+								<td>Transaction Amount</td>
+								<td>${paymentstatus.amount}</td>
+							</tr>
+							<tr>
+								<td>Transaction Status</td>
+								<td>${paymentstatus.status}</td>
+							</tr>
+							
+						</table>
+						<a href="/scart/">Home</a>
 			</div>
 		</div>
 

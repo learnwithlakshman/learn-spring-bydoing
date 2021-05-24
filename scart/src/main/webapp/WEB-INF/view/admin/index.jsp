@@ -23,9 +23,11 @@
 		Cart Application</div>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="text-center text-primary">Cart Item Details</div>
+		<div class="row mt-2">
+			<div class="col col-md-10"></div>
+			<div class="col col-md-2">
+				<a href="v_addnewproduct" class="btn btn-primary">Add New Product</a>
+
 			</div>
 		</div>
 		<div class="row mt-2">
@@ -37,30 +39,22 @@
 							<th>Name</th>
 							<th>Description</th>
 							<th>Price</th>
-						
+							<th>Edit | Delete</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${cartdetails.products}" var="product">
+						<c:forEach items="${productList}" var="product">
 							<tr>
 								<td>${product.name}</td>
 								<td>${product.description}</td>
 								<td>${product.price}</td>
-								
+								<td><a href="" class="btn btn-primary">Edit</a> | <a href="" class="btn btn-danger">Delete</a></td>
 							</tr>
-						
+
 						</c:forEach>
-						<tr class="bg-info">
-							<td colspan="2">Total Price</td>
-							<td>${cartdetails.totalPrice}</td>						
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td><a href="checkoutitems" class="btn btn-primary" >Checkout</a></td>
-						</tr>
 					</tbody>
 				</table>
-				<a href="home">Add More Items</a>
+
 			</div>
 		</div>
 

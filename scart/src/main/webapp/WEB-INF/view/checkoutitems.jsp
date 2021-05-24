@@ -29,37 +29,21 @@
 			</div>
 		</div>
 		<div class="row mt-2">
-			<div class="col col-md-8 offset-md-2">
+			<div class="col col-md-6 offset-md-3">
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Price</th>
-						
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${cartdetails.products}" var="product">
-							<tr>
-								<td>${product.name}</td>
-								<td>${product.description}</td>
-								<td>${product.price}</td>
-								
-							</tr>
-						
-						</c:forEach>
-						<tr class="bg-info">
-							<td colspan="2">Total Price</td>
-							<td>${cartdetails.totalPrice}</td>						
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td><a href="checkoutitems" class="btn btn-primary" >Checkout</a></td>
-						</tr>
-					</tbody>
-				</table>
+				<form method="POST" action="pgredirect" >
+					<div class="form-group">
+						<label>Mobile</label>
+						<input type="text" name="CUST_ID" placeholder="Enter your valid mobile number" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Amount</label>
+						<input type="number" name="TXN_AMOUNT"  value='${cartdetails.totalPrice}' class="form-control"  readonly="readonly">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Pay now</button>
+					</div>
+				</form>
 				<a href="home">Add More Items</a>
 			</div>
 		</div>

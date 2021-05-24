@@ -1,8 +1,10 @@
 package com.careerit.scart.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Product {
 
 		private long pid;

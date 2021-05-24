@@ -1,0 +1,16 @@
+paytm:
+    mobile: XXXXXXX
+    email: XXXXXXXXXXX
+    merchantId: put_your_merchantid
+    merchantKey: put_your_key
+    channelId: WEB
+    website: WEBSTAGING
+    industryTypeId: Retail
+    paytmUrl:  https://securegw-stage.paytm.in/order/process
+    callbackUrl: {put own url like : http://localhost:9090/scart/paymentreponse}
+    details:
+      MID: ${paytm.merchantid}
+      CHANNEL_ID: ${paytm.channelid}
+      INDUSTRY_TYPE_ID: ${paytm.industrytypeid}
+      WEBSITE: ${paytm.website}
+      CALLBACK_URL: ${paytm.callbackUrl}
