@@ -113,7 +113,7 @@ public class ProductDaoImpl implements ProductDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement pst = con
-						.prepareStatement("select pid,name,price,description where name=? and price=?");
+						.prepareStatement("select pid,name,price,description from product where name=? and price=?");
 				pst.setString(1, name);
 				pst.setDouble(2, price);
 				return pst;

@@ -21,7 +21,12 @@
 <body>
 	<div class="py-2 text-center text-white bg-primary display-4">Shopping
 		Cart Application</div>
-
+	<div class="py-1 text-center">
+			User name: ${username}   
+			<form action="logout" method="post">
+         		   <input type="submit" value="Sign Out"/>
+       		 </form>
+	</div>
 	<div class="container">
 		<div class="row mt-2">
 			<div class="col col-md-10"></div>

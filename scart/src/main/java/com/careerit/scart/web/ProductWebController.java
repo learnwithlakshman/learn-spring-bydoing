@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.config.annotation.web.configurers.SecurityContextConfigurer;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +51,15 @@ public class ProductWebController {
 	public String index(Model model) {
 		List<Product> productList = productService.getAllProducts();
 		model.addAttribute("productList", productList);
+//		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
+//			
+//			User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			model.addAttribute("username", user.getUsername());
+//		}
 		return "index";
 	}
+	
+	
 
 	@GetMapping("/addtocart")
 	public String addToCart(@RequestParam("pid") long pid, HttpSession httpSession) {
