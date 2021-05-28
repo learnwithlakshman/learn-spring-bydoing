@@ -69,5 +69,6 @@
 		<module>spring-jdbc</module>
 		<module>spring-domain</module>
 		<module>scart</module>
+		<module>ipl-stat</module>
 	</modules>
 </project>
