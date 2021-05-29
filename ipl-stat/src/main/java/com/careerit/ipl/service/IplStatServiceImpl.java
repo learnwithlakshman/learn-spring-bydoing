@@ -9,6 +9,7 @@ import com.careerit.ipl.dao.IplStatDao;
 import com.careerit.ipl.domain.Player;
 import com.careerit.ipl.domain.TeamDetails;
 import com.careerit.ipl.dto.RoleDetailsDTO;
+import com.careerit.ipl.dto.TeamDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +46,11 @@ public class IplStatServiceImpl implements IplStatService {
 	public List<RoleDetailsDTO> getTeamRoleDetails(String team) {
 		// Validations
 		return iplStatDao.findTeamRoleDetails(team);
+	}
+
+	@Override
+	public TeamDTO getTeamNames() {
+		return iplStatDao.findTeamNames();
 	}
 
 }

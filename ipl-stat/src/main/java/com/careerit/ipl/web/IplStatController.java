@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.careerit.ipl.domain.Player;
 import com.careerit.ipl.domain.TeamDetails;
 import com.careerit.ipl.dto.RoleDetailsDTO;
+import com.careerit.ipl.dto.TeamDTO;
 import com.careerit.ipl.service.IplStatService;
+
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/stat")
@@ -20,6 +23,7 @@ public class IplStatController {
 	private IplStatService iplStatService;
 
 	@GetMapping("/teams")
+	@ApiResponse(description = "Returns team details with summary")
 	public List<TeamDetails> getTeamStats() {
 		return iplStatService.getTeamStat();
 	}
@@ -42,5 +46,10 @@ public class IplStatController {
 	@GetMapping("/teams/{team}")
 	public List<RoleDetailsDTO> getTeamRoleDetails(@PathVariable("team") String team) {
 		return iplStatService.getTeamRoleDetails(team);
+	}
+	
+	@GetMapping("/teams/labels")
+	public TeamDTO getTeamNames() {
+		return iplStatService.getTeamNames();
 	}
 }

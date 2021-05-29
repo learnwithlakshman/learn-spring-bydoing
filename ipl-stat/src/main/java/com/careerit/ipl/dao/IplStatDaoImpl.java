@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import com.careerit.ipl.domain.Player;
 import com.careerit.ipl.domain.TeamDetails;
 import com.careerit.ipl.dto.RoleDetailsDTO;
+import com.careerit.ipl.dto.TeamDTO;
 import com.careerit.ipl.repo.PlayerRepo;
 import com.careerit.ipl.repo.TeamDetailsRepo;
 
@@ -78,6 +79,19 @@ public class IplStatDaoImpl implements IplStatDao {
 		List<RoleDetailsDTO> list = aggreateResult.getMappedResults();
 		log.info("{} has {} role", team, list.size());
 		return list;
+	}
+
+	@Override
+	public TeamDTO findTeamNames() {
+		
+		GroupOperation group = group("null").addToSet("team").as("teams");
+		ProjectionOperation project = project().and("teams").as("teamNames").andExclude("_id");
+		
+		Aggregation agger = newAggregation(group,project);
+		AggregationResults<TeamDTO> result = mongoOpes.aggregate(agger, "player",TeamDTO.class);
+		TeamDTO teamDTO = result.getUniqueMappedResult();
+		log.info("Team labels details:{}",teamDTO.getTeamNames());
+		return  teamDTO;
 	}
 
 }
