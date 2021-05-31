@@ -3,7 +3,9 @@ package com.careerit.ipl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -17,4 +19,5 @@ public class IplApplication {
 		public static void main(String[] args) {
 			SpringApplication.run(IplApplication.class, args);
 		}
+		
 }

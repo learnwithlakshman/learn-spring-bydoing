@@ -3,6 +3,8 @@ package com.careerit.ipl.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ public class IplStatController {
 
 	@GetMapping("/players")
 	public List<Player> getPlayers() {
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 		return iplStatService.getPlayers();
 	}
 
